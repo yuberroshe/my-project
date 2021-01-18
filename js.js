@@ -12,10 +12,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('arr')) {
         let rtr = JSON.parse(localStorage.getItem('arr'))
         console.log(rtr);
-        for (let i = 0; i <= a.length; i++) {
-            a[i] = rtr[i]
-            console.log(typeof a[i]);
-        }
+     // ??????????? 
 
     }
 

@@ -3,17 +3,13 @@ window.addEventListener('DOMContentLoaded', function() {
     let box = document.querySelector('.box');
     let input = document.querySelector('input');
     let a = document.querySelectorAll('a');
-    // let block = document.querySelectorAll('.block')
     let btn = document.querySelector('.btn');
     let one = document.querySelectorAll('.one');
-    let popup = document.querySelector('.popup');
-    let t = [];
+    let showInput = document.querySelector('.popup');
 
-    if (localStorage.getItem('arr')) {
-        let rtr = JSON.parse(localStorage.getItem('arr'))
-        console.log(rtr);
-     // ??????????? 
 
+    if (localStorage.getItem('p')) {
+        box.innerHTML = localStorage.getItem('p')
     }
 
 
@@ -21,12 +17,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
         let target = event.target;
         if (target && target.classList.contains('one')) {
-
             one.forEach((item, i) => {
+               //После перезагрузки страницы  не работает условие( if (target == item)) !!!!
+               //Функция работает: инфо в console.log выводит
                 if (target == item) {
-                    popup.classList.remove('hide');
-                    popup.classList.add('show');
+                    showInput.classList.remove('hide');
+                    showInput.classList.add('show');
                     return bl = i;
+                    local()
                 }
             })
         }
@@ -34,17 +32,20 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
     btn.addEventListener('click', function() {
+        console.log(bl);
         a.forEach((item, i) => {
             if (bl == i) {
                 item.href = input.value;
-                t.push(item.href)
                 input.value = ' ';
-                popup.classList.remove('show');
-                popup.classList.add('hide');
-                localStorage.setItem('arr', JSON.stringify(t))
+                showInput.classList.remove('show');
+                showInput.classList.add('hide');
+                local()
             }
 
         })
     })
 
+    function local() {
+        localStorage.setItem('p', box.innerHTML)
+    }
 })

@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', function() {
 
     let box = document.querySelector('.box');
-    let div1 = document.querySelector('#rui');
+
     let btn2 = document.querySelector('.btn2');
     let box2 = document.querySelector('.box2');
     let btn = document.querySelector('.btn');
@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
     let inp2 = inpStart2.querySelector('.input2 ');
 
 
+
     btn2.onclick = function() {
         inpStart2.classList.remove('hide')
         inpStart2.classList.add('show')
@@ -18,6 +19,13 @@ window.addEventListener('DOMContentLoaded', function() {
         inpStart.classList.add('show')
         this.classList.add('hide')
     }
+
+    if (localStorage.getItem('page')) {
+
+        box.innerHTML = localStorage.getItem('page')
+
+    }
+
 
     function local() {
 
@@ -29,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function f1() {
 
-        let div1 = document.createElement('div')
+        div1 = document.createElement('div')
         div1.classList.add("block");
         div1.style.background = randColor();
 
@@ -66,23 +74,19 @@ window.addEventListener('DOMContentLoaded', function() {
         local()
     }
 
-
-    if (localStorage.getItem('page')) {
-
-        box.innerHTML = localStorage.getItem('page')
-
-    }
+    document.querySelectorAll('.block').forEach(item => {
+        item.addEventListener('click', function(event) {
+            let target = event.target
+            if (target && target.classList.contains('one')) {
 
 
-    box.addEventListener('click', function(event) {
-        let target = event.target
-        if (target && target.classList.contains('block')) {
-
-            target.remove();
+                item.classList.add('delete')
+            }
 
             local()
 
-        }
+        })
+
     })
 
     function randColor() {
@@ -92,6 +96,7 @@ window.addEventListener('DOMContentLoaded', function() {
         return '#' + r.toString(16) + g.toString(16) + b.toString(16);
 
     }
+
 
 
 })
